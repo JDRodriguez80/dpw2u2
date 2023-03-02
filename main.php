@@ -16,8 +16,19 @@ if (!isset($_SESSION['active'])) {
 </head>
 
 <body>
-    <?php include "includes/navLog.php" ?>
-    <H1>Usuario valido</H1>
+    <?php include "includes/navLog.php";
+    $nombreCompleto = $_SESSION['nombre'] . " " . $_SESSION['apellidoP'] . " " . $_SESSION['apellidoM'];
+    $tipo = $_SESSION['tipo'];
+    $ntipo = "";
+    if ($tipo == 1) {
+        $ntipo = "Estudiante";
+    } else if ($tipo == 2) {
+        $ntipo = "Profesor";
+    }
+    ?>
+
+    <H1>Bienvenido <?php echo $nombreCompleto; ?></H1>
+    <h2>Has ingresado como: <?php echo $ntipo; ?></h2>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <?php
-require "config/conexion.php";
+require "config/conexion.php";//insatncia de la clase conexion
 $conn = new conexion();
 $conexion = $conn->conectar();
 session_start();
@@ -7,12 +7,13 @@ if (isset($_SESSION['active'])) {
     header("location:views/main.php");
 }
 
+//filtrando y sanitizando los datos
 if (filter_has_var(INPUT_POST, "usuario")) {
     $usuario_un = $_POST['usuario'];
     $usuario = htmlspecialchars($usuario_un);
     $pass_un = $_POST['pass'];
     $pass = htmlspecialchars($pass_un);
-
+    //consulta a la base de datos
     $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE matricula=:usuario AND Password=:pass");
     $stmt->bindParam(":usuario", $usuario);
     $stmt->bindParam(":pass", $pass);
@@ -20,8 +21,14 @@ if (filter_has_var(INPUT_POST, "usuario")) {
     $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($resultado) {
         $_SESSION['active'] = true;
-        $_SESSION['usuario'] = $resultado['usuario'];
+        $_SESSION['matricula'] = $resultado['matricula'];
         $_SESSION['id'] = $resultado['id'];
+        $_SESSION['nombre'] = $resultado['Nombre'];
+        $_SESSION['apellidoP'] = $resultado['ApellidoPaterno'];
+        $_SESSION['apellidoM'] = $resultado['ApellidoMaterno'];
+        $_SESSION['turno'] = $resultado['Turno'];
+        $_SESSION['tipo'] = $resultado['TipoUsuario'];
+
         header("location:main.php");
     } else {
         echo "Usuario o contraseña incorrectos";
@@ -48,7 +55,7 @@ if (filter_has_var(INPUT_POST, "usuario")) {
     <section class="inicio">
         <h1>Inicia sesion</h1>
         <form method="POST">
-            <label for="usuario">Usuario</label>
+            <label for="usuario">Matricula</label>
             <input type="text" name="usuario" id="usuario">
             <label for="pass">Contraseña</label>
             <input type="password" name="pass" id="pass">

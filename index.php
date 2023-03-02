@@ -4,7 +4,7 @@ $conn = new conexion();
 $conexion = $conn->conectar();
 session_start();
 if (isset($_SESSION['active'])) {
-    header("location:views/main.php");
+    header("location:main.php");
 }
 ?>
 <!DOCTYPE html>
@@ -22,7 +22,16 @@ if (isset($_SESSION['active'])) {
     <header>
         <?php include "includes/nav.php" ?>
     </header>
-    <h1>Usted no esta logeado</h1>
+    <div class="container">
+        <div class="Titulo">
+            <h1>Preparatoria Municipal No. 1</h1>
+        </div>
+        <div class="Foto"><img src="/img/images.jpg" alt=""></div>
+        <div class="parrafo">
+            <p>Escuela Preparatoria dediacada a formar lideres pero primero buenos mexicanos</p>
+        </div>
+
+    </div>
 </body>
 
 </html>

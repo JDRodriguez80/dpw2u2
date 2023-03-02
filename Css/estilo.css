@@ -11,6 +11,7 @@ nav {
     text-align: center;
     height: 50px;
 }
+
 ul {
     display: flex;
     justify-content: center;
@@ -25,4 +26,40 @@ ul li a {
     padding: 5px;
     text-align: center;
     text-decoration: none;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "Titulo Titulo Titulo"
+        "Foto Foto Foto"
+        "parrafo parrafo parrafo";
+}
+
+.Titulo {
+    grid-area: Titulo;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.Foto {
+    grid-area: Foto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.parrafo {
+    grid-area: parrafo;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
