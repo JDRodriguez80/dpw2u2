@@ -45,7 +45,7 @@ if (filter_has_var(INPUT_POST, "usuario")) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Css/estilo.css">
-    <title>Document</title>
+    <title>Inicio de sesión</title>
 </head>
 
 <body>
@@ -53,7 +53,7 @@ if (filter_has_var(INPUT_POST, "usuario")) {
         <?php include "includes/nav.php" ?>
     </header>
     <section class="inicio">
-        <h1>Inicia sesion</h1>
+        <h1>Inicia sesión</h1>
         <form method="POST">
             <label for="usuario">Matricula</label>
             <input type="text" name="usuario" id="usuario">

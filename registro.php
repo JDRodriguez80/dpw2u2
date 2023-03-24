@@ -24,8 +24,8 @@ if (!empty($_POST)) {
         $nombre = $_POST['nombre'];
         $apellidoP = $_POST['apellidoP'];
         $apellidoM = $_POST['apellidoM'];
-        $contraseña = md5($_POST['contraseña']);
-        $contraseña2 = md5($_POST['contraseña2']);
+        $contraseña = $_POST['contraseña'];
+        $contraseña2 = $_POST['contraseña2'];
         $turno = $_POST['turno'];
         $rol = 1; //solo se pueden insertar usuarios de tipo 1
         $querry = $conexion->prepare("SELECT * FROM usuarios WHERE matricula = '$matricula'");
@@ -37,9 +37,9 @@ if (!empty($_POST)) {
             if ($contraseña != $contraseña2) {
                 echo "Las contraseñas no coinciden";
             } else {
-                $querry = $conexion->prepare("INSERT INTO usuarios(matricula, Nombre, ApellidoPaterno, ApellidoMaterno,Turno, TipoUsuario,  Password) VALUES('$matricula', '$nombre', '$apellidoP', '$apellidoM',$turno,'$rol','$contraseña')");
+                $querry = $conexion->prepare("INSERT INTO usuarios(matricula, Nombre, ApellidoPaterno, ApellidoMaterno,Turno, TipoUsuario, Password) VALUES('$matricula', '$nombre', '$apellidoP', '$apellidoM',$turno,'$rol','$contraseña')");
                 $querry->execute();
-                if ($query) {
+                if ($querry) {
                     echo "Usuario registrado correctamente";
                 } else {
                     echo "Error al registrar el usuario";
@@ -79,8 +79,8 @@ if (!empty($_POST)) {
         <input type="text" name="apellidoM" id="apellidoM" placeholder="Apellido Materno" required>
         <label for="turno">Turno</label>
         <select name="turno" id="turno">
-            <option value="1">Matutino</option>
-            <option value="2">Vespertino</option>
+            <option value="0">Matutino</option>
+            <option value="1">Vespertino</option>
 
         </select>
         <br>
@@ -90,6 +90,7 @@ if (!empty($_POST)) {
         <label for="contraseña2">Confirmar contraseña</label>
         <input type="password" name="contraseña2" id="contraseña2" placeholder="Confirmar contraseña" required>
         <input type="submit" value="Registrar">
+    </form>
 
 </body>
 
